@@ -1,0 +1,126 @@
+{
+  "info": {
+    "_postman_id": "a75345d7-ed5c-4fc2-9afa-e817cd1ec600",
+    "name": "Experiments",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "49502292",
+    "_collection_link": "https://go.postman.co/collection/49502292-a75345d7-ed5c-4fc2-9afa-e817cd1ec600?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "Get all experiments associated with a siteId",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/experiments?filter=%5B%7B%22field%22%3A%22siteId%22%2C%22operator%22%3A%22EQUAL%22%2C%22parameters%22%3A%5B{{siteId}}%5D%7D%5D",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "experiments"
+          ],
+          "query": [
+            {
+              "key": "filter",
+              "value": "%5B%7B%22field%22%3A%22siteId%22%2C%22operator%22%3A%22EQUAL%22%2C%22parameters%22%3A%5B{{siteId}}%5D%7D%5D"
+            }
+          ]
+        },
+        "description": "# Get All Experiments Associated with a Site ID\n\n## Overview\n\nThis endpoint retrieves all experiments that are associated with a specific site ID. It uses a filter parameter to query experiments based on the provided `siteId` value.\n\n## Authentication\n\n**Required Credentials:**\n\nTo successfully make this request, you need to provide your client credentials:\n\n- **`{{client-id}}`** - Your application's client ID\n    \n- **`{{client-secret}}`** - Your application's client secret\n    \n\nDefine these credentials in the parent **Experiments** collection's authorization settings. Configure them before using this request.\n\n## Required Variables\n\nEnsure the following variables are set in your environment or collection prior to using this request:\n\n- **`baseUrl`** - The base URL for the API (for example, `https://api.example.com`)\n    \n- **`siteId`** - The unique identifier for the site whose experiments you want to retrieve\n    \n- **`client-id`** - Your application's client ID (set in the Experiments collection authorization)\n    \n- **`client-secret`** - Your application's client secret (set in the Experiments collection authorization)\n    \n\n## Query Parameters\n\n### `filter` Parameter\n\nThe `filter` parameter uses **URL-encoded JSON** to specify filtering criteria. The decoded structure is:\n\n``` json\n[\n  {\n    \"field\": \"siteId\",\n    \"operator\": \"EQUAL\",\n    \"parameters\": [\"{{siteId}}\"]\n  }\n]\n\n ```\n\n**Filter Structure:**\n\n- `field` - The field to filter on (in this case, `siteId`)\n    \n- `operator` - The comparison operator (for example, `EQUAL`, `NOT_EQUAL`, `IN`)\n    \n- `parameters` - An array of values to match against\n    \n\nThe filter is automatically URL-encoded in the request URL.\n\n## Response Format\n\nThe endpoint returns a JSON response containing an array of experiment objects that match the specified site ID. Each experiment object includes details such as:\n\n- Experiment ID\n    \n- Experiment name\n    \n- Status\n    \n- Configuration details\n    \n- Associated variations and targeting rules"
+      },
+      "response": []
+    },
+    {
+      "name": "Change an experiment's status",
+      "request": {
+        "method": "PATCH",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"deviations\": {\n        \"{{variationId}}\": {{trafficPercentage}}\n    }\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{baseUrl}}/experiments/:experimentId?action={{status}}",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "experiments",
+            ":experimentId"
+          ],
+          "query": [
+            {
+              "key": "action",
+              "value": "{{status}}",
+              "description": "Value can be ACTIVATE, PAUSE, RESUME, STOP, SCHEDULE, or DEACTIVATE."
+            }
+          ],
+          "variable": [
+            {
+              "key": "experimentId",
+              "value": "",
+              "description": "Experiment's unique identifier."
+            }
+          ]
+        },
+        "description": "# Partially Update an Experiment\n\n## Overview\n\nThis endpoint partially updates an existing experiment by modifying specific properties without affecting the entire experiment configuration.\n\n## Authentication\n\n**Required Credentials:**\n\nTo successfully make this request, you need to provide your client credentials:\n\n- **`{{client-id}}`** - Your application's client ID\n    \n- **`{{client-secret}}`** - Your application's client secret\n    \n\nDefine these credentials in the parent **Experiments** collection's authorization settings. Configure them before using this request.\n\n## Required Variables\n\nEnsure the following variables are set in your environment or collection prior to using this request:\n\n- **`baseUrl`** - The base URL for the API\n    \n- **`experimentId`** - The unique identifier of the experiment you want to update\n    \n- **`status`** - The action to perform (`ACTIVATE`, `PAUSE`, `RESUME`, `STOP`, `SCHEDULE`, `DEACTIVATE`)\n    \n- **`client-id`** - Your application's client ID (set in the Experiments collection authorization)\n    \n- **`client-secret`** - Your application's client secret (set in the Experiments collection authorization)\n    \n\n## Parameters\n\n### Path Parameters\n\n| Parameter | Type | Required | Description |\n| --- | --- | --- | --- |\n| `experimentId` | string | Yes | The unique identifier of the experiment to update. You can retrieve this ID from the list experiments endpoint. |\n\n### Query Parameters\n\n| Parameter | Type | Required | Description |\n| --- | --- | --- | --- |\n| `action` | string | Yes | Specifies the action to perform on the experiment. Use the `{{status}}` variable to dynamically set this value. |\n\n**`action`** **values:**\n\n- `ACTIVATE`\n    \n- `PAUSE`\n    \n- `RESUME`\n    \n- `STOP`\n    \n- `SCHEDULE`\n    \n- `DEACTIVATE`"
+      },
+      "response": []
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "clientSecret",
+        "value": "{{client-secret}}",
+        "type": "string"
+      },
+      {
+        "key": "clientId",
+        "value": "{{client-id}}",
+        "type": "string"
+      },
+      {
+        "key": "grant_type",
+        "value": "client_credentials",
+        "type": "string"
+      },
+      {
+        "key": "addTokenTo",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    }
+  ]
+}

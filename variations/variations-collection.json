@@ -1,0 +1,86 @@
+{
+  "info": {
+    "_postman_id": "bd3b7d40-679e-47fb-8e34-1807ea349426",
+    "name": "Variations",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "49502292",
+    "_collection_link": "https://go.postman.co/collection/49502292-bd3b7d40-679e-47fb-8e34-1807ea349426?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "Get a variation",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/variations/:variationId",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "variations",
+            ":variationId"
+          ],
+          "variable": [
+            {
+              "key": "variationId",
+              "value": "",
+              "description": "Your variation's unique identifier."
+            }
+          ]
+        },
+        "description": "# Get a Variation\n\n## Overview\n\nThis endpoint retrieves detailed information about a specific variation by its unique identifier. Variations are typically used in experimentation and A/B testing scenarios to represent different versions of content, features, or experiences that can be served to users.\n\n## Authentication\n\n**Required Credentials:**\n\nTo successfully make this request, you need to provide your client credentials:\n\n- **`{{client-id}}`** - Your application's client ID\n    \n- **`{{client-secret}}`** - Your application's client secret\n    \n\nDefine these credentials in the parent **Variations** collection's authorization settings. Configure them before using this request.\n\n## Path Parameters\n\n| Parameter | Type | Required | Description |\n| --- | --- | --- | --- |\n| `variationId` | string | Yes | The unique identifier of the variation to retrieve |\n\n## Expected Response Format\n\nThe endpoint returns a JSON object containing the variation details, which includes:\n\n- Variation ID and name\n    \n- Configuration settings\n    \n- Status information\n    \n- Associated experiment or campaign details\n    \n- Creation and modification timestamps"
+      },
+      "response": []
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "clientId",
+        "value": "{{client-id}}",
+        "type": "string"
+      },
+      {
+        "key": "clientSecret",
+        "value": "{{client-secret}}",
+        "type": "string"
+      },
+      {
+        "key": "grant_type",
+        "value": "client_credentials",
+        "type": "string"
+      },
+      {
+        "key": "addTokenTo",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    }
+  ]
+}
