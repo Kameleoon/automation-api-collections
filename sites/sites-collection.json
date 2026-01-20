@@ -1,0 +1,84 @@
+{
+  "info": {
+    "_postman_id": "96e31314-0749-4a10-bfa2-b26120346a34",
+    "name": "Sites",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "49502292",
+    "_collection_link": "https://go.postman.co/collection/49502292-96e31314-0749-4a10-bfa2-b26120346a34?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "Get a siteId based on a siteCode",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/sites?filter=%5B%7B%22field%22%3A%22code%22%2C%22operator%22%3A%22EQUAL%22%2C%22parameters%22%3A%5B%22{{siteCode}}%22%5D%7D%5D",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "sites"
+          ],
+          "query": [
+            {
+              "key": "filter",
+              "value": "%5B%7B%22field%22%3A%22code%22%2C%22operator%22%3A%22EQUAL%22%2C%22parameters%22%3A%5B%22{{siteCode}}%22%5D%7D%5D"
+            }
+          ]
+        },
+        "description": "# Get Site ID by Site Code\n\n## Overview\n\nThis endpoint retrieves a site ID based on a specific site code. It queries the sites collection using a filter parameter to find the exact match for the provided site code.\n\n## Authentication\n\n**Required Credentials:**\n\nTo successfully make this request, you need to provide your client credentials:\n\n- **`{{client-id}}`** - Your application's client ID\n    \n- **`{{client-secret}}`** - Your application's client secret\n    \n\nDefine these credentials in the parent **Sites** collection's authorization settings. Configure them before using this request.\n\n## Filter Parameter\n\nThe `filter` parameter uses a JSON structure (URL-encoded) to specify the search criteria:\n\n``` json\n[\n  {\n    \"field\": \"code\",\n    \"operator\": \"EQUAL\",\n    \"parameters\": [\"{{siteCode}}\"]\n  }\n]\n\n ```\n\n- **`field`**: The property to filter on (in this case, \"code\")\n    \n- **`operator`**: The comparison operator (EQUAL for exact match)\n    \n- **`parameters`**: An array containing the value(s) to match against\n    \n\n## Required Variables\n\nThis request requires the following variables to be set in your environment:\n\n- **`baseUrl`**: The base URL for the API (e.g., `https://api.example.com/v1`)\n    \n- **`siteCode`**: The specific site code you want to look up (e.g., \"NYC01\", \"LON02\")\n    \n- **`accessToken`**: Bearer token for authentication (set in the Authorization header)\n    \n\n## Expected Response\n\nThe API will return a JSON response containing site information, including the site ID that corresponds to the provided site code. The response includes:\n\n- Site ID\n    \n- Site code\n    \n- Site name\n    \n- Additional site metadata"
+      },
+      "response": []
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "clientSecret",
+        "value": "{{client-secret}}",
+        "type": "string"
+      },
+      {
+        "key": "clientId",
+        "value": "{{client-id}}",
+        "type": "string"
+      },
+      {
+        "key": "grant_type",
+        "value": "client_credentials",
+        "type": "string"
+      },
+      {
+        "key": "addTokenTo",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    }
+  ]
+}
