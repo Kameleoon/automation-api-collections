@@ -7,7 +7,7 @@ Use these collections to quickly test endpoints, integrate automation features, 
 ## Prerequisites
 
 - **Postman:** Ensure you have a [Postman account](https://www.postman.com/).
-- **Kameleoon Account:** You need access to the Kameleoon platform to obtain necessary credentials (such as your side code or API tokens).
+- **Kameleoon Account:** You need access to the [Kameleoon platform](https://login.kameleoon.com/app) to obtain necessary credentials (such as your side code or API tokens).
 
 ## Getting Started
 
